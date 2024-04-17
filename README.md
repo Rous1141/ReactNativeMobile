@@ -1,0 +1,2 @@
+- ***Sidenote:*** Using Expo CLI
+
