@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-
+import Header from './components/Header';
+import Footer from './components/Footer';
+import WelcomeScreen from './components/WelcomeScreen';
 export default function App() {
-  
+
   return (
     <View style={styles.container}>
-      <Text>This is my first project. Glory To Gensokyo!</Text>
-      <StatusBar style="auto" />
+      <WelcomeScreen />
+      <Header />
+      <Footer />
     </View>
   );
 }
