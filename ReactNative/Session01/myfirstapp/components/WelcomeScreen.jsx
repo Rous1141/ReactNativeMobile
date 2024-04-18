@@ -42,7 +42,6 @@ export default function WelcomeScreen() {
                 <Separator />
                 <ProfileScroll />
             </View>
-
         </ScrollView>
     )
 }
@@ -57,6 +56,7 @@ const customStyles = StyleSheet.create({
         width: '100%',
         height: "100%",
         paddingTop: "25%",
+        paddingBottom: "25%",
     },
     textHeader: {
         paddingLeft: "2%",
@@ -84,7 +84,7 @@ const customStyles = StyleSheet.create({
         borderColor: "black",
         borderRadius: 2,
         marginTop: 5,
-        width: "50%",
+        width: "70%",
         paddingLeft: "1%",
         height: 30,
     },

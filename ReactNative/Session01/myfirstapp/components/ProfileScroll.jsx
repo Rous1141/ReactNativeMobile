@@ -1,32 +1,78 @@
 import React from 'react'
-import { View, ScrollView, Text, StyleSheet } from 'react-native'
+import { View, ScrollView, Text, StyleSheet, Image } from 'react-native'
 export default function ProfileScroll() {
     //ScrollView is to make your specific elements scrollable. 
     //Becareful when using this to make a large amount of content scrollable, 
     //there are better ways to impliment that. 
     //This is for only small quantity to maintain performance
-    const imageList = []
+    const imageList = [
+        "../assets/scrollview/lunacrops.png",
+        "../assets/scrollview/lunarabbits.jpg",
+        "../assets/scrollview/watastuki2.jpg",
+        "../assets/scrollview/watatsuki.jpeg",
+        "../assets/scrollview/watatsuki3.jpeg"
+    ]
     return (
-        <ScrollView>
+        <>
             <View>
                 <Text
                     style={customizedStyles.textHeader}
                 >
                     Here is what we look like!</Text>
             </View>
-            <ScrollView horizontal={true} vertical={true}>
-                
+            <ScrollView horizontal={true}>
+                <View style={customizedStyles.imageFrame}>
+                    <Image
+                        style={customizedStyles.image}
+                        source={require('../assets/scrollview/lunacrops.png')}
+                    />
+                </View>
+                <View style={customizedStyles.imageFrame}>
+                    <Image
+                        style={customizedStyles.image}
+                        source={require('../assets/scrollview/lunarabbits.jpg')}
+                    />
+                </View>
+                <View style={customizedStyles.imageFrame}>
+                    <Image
+                        style={customizedStyles.image}
+                        source={require('../assets/scrollview/watastuki2.jpg')}
+                    />
+                </View>
+                <View style={customizedStyles.imageFrame}>
+                    <Image
+                        style={customizedStyles.image}
+                        source={require('../assets/scrollview/watatsuki.jpeg')}
+                    />
+                </View>
+                <View style={customizedStyles.imageFrame}>
+                    <Image
+                        style={customizedStyles.image}
+                        source={require('../assets/scrollview/watatsuki3.jpeg')}
+                    />
+                </View>
             </ScrollView>
-        </ScrollView>
+        </>
     )
 }
 const customizedStyles = StyleSheet.create({
     textHeader: {
-        color:'black',
+        color: 'black',
         paddingLeft: "2%",
         paddingRight: "2%",
         fontSize: 30,
-        marginBottom: "10%",
         fontWeight: "bold",
+    },
+    imageFrame: {
+        width: 200,
+        height: 300,
+        marginLeft: 5,
+        marginRight: 5,
+    }
+    ,
+    image: {
+        width: 200,
+        height: 300,
+        objectFit:"cover"
     },
 })
