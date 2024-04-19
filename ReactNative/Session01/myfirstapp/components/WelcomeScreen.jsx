@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-import { View, Text, Image, StyleSheet, TextInput, Button, Alert, ScrollView } from 'react-native'
+import { View, Text, Image, StyleSheet, TextInput, Button, Alert, ScrollView, Switch,ImageBackground } from 'react-native'
 import Separator from './Customized/Separator'
 import ProfileScroll from './ProfileScroll'
+import EnemiesProfile from './EnemiesProfile'
 export default function WelcomeScreen() {
     const [text, setText] = useState('')
+    const [switchValue, setSwitchValue] = useState(false)
     return (
         <ScrollView vertical={true}>
-            <Image
+            <ImageBackground
                 style={customStyles.image}
                 source={require('../assets/sagume.jpeg')}
-            />
+            >
             <View style={customStyles.view}>
                 <Text style={customStyles.textHeader}>
                     Lunarian's Constription
@@ -30,18 +32,36 @@ export default function WelcomeScreen() {
                     <Button
                         color="white"
                         title='Submit'
-                        onPress={() => { Alert.alert(`You are: ${text}`); name = text }}
+                        onPress={() => { Alert.alert(`You are: ${text}`);}}
                     />
 
                 </View>
-                {text &&
-                    (<Text>
-                        Welcome, {text}!
-                    </Text>)
-                }
+                <View
+                    style={customStyles.switch}
+                >
+                    <Text
+                        style={{
+                            color: '#000000',
+                            fontSize: 15,
+                            fontWeight: 'bold',
+                            marginRight:10
+                        }}
+                    >Want To Recieve Daily Reports?</Text>
+                    <Switch
+                        trackColor={{ false: "black", true: "cyan" }}
+                        thumbColor={!switchValue ? "red" : "yellow"}
+                        ios_backgroundColor="black"
+                        onValueChange={(value) => { setSwitchValue(value) }}
+                        value={switchValue}
+                    />
+                </View>
                 <Separator />
                 <ProfileScroll />
+                <Separator />
+                <EnemiesProfile/>
+                <Separator />
             </View>
+            </ImageBackground>
         </ScrollView>
     )
 }
@@ -49,14 +69,13 @@ export default function WelcomeScreen() {
 // StyleSheet.create to create a custome style components like a separate CSS file
 const customStyles = StyleSheet.create({
     view: {
-        position: 'absolute',
+        position: 'relative',
         backgroundColor: "rgba(144, 192, 223,0.5)",
         display: "flex",
         alignItems: 'center',
         width: '100%',
         height: "100%",
         paddingTop: "25%",
-        paddingBottom: "25%",
     },
     textHeader: {
         paddingLeft: "2%",
@@ -77,7 +96,11 @@ const customStyles = StyleSheet.create({
         height: "auto",
     },
     image: {
-       width:"auto"
+        width: 'auto',
+        height: 1120,
+        objectFit: 'cover',
+    },
+    form: {
     },
     textInput: {
         backgroundColor: "rgba(255, 255, 255, 0.8)",
@@ -91,6 +114,12 @@ const customStyles = StyleSheet.create({
     form: {
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'space-evenly'
+    },
+    switch:{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems:"center",
         justifyContent: 'space-evenly'
     }
 })

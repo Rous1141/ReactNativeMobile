@@ -13,7 +13,12 @@ export default function ProfileScroll() {
         "../assets/scrollview/watatsuki3.jpeg"
     ]
     return (
-        <>
+        <View 
+            style={{
+                height: 'auto',
+                width: '100%',
+            }}
+        >
             <View>
                 <Text
                     style={customizedStyles.textHeader}
@@ -52,7 +57,7 @@ export default function ProfileScroll() {
                     />
                 </View>
             </ScrollView>
-        </>
+        </View>
     )
 }
 const customizedStyles = StyleSheet.create({
@@ -64,15 +69,13 @@ const customizedStyles = StyleSheet.create({
         fontWeight: "bold",
     },
     imageFrame: {
-        width: 200,
-        height: 300,
         marginLeft: 5,
         marginRight: 5,
     }
     ,
     image: {
         width: 200,
-        height: 300,
+        height: 200,
         objectFit:"cover"
     },
 })
