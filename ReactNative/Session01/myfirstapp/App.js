@@ -15,7 +15,6 @@ export default function App() {
   return (
    
     //Note: SafeAreaView is specifically for IOS devices, for the UI can get covered by the devices desgin 
-   
     <SafeAreaView style={styles.container}>
       {/* <WelcomeScreen />
       <Header />
