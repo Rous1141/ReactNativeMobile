@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
         height: 1,
         width: '90%',
         backgroundColor: 'blue',
+        margin:"auto",
         marginTop: 10,
         marginBottom: 10,
 

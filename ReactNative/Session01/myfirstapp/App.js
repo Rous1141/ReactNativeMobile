@@ -19,7 +19,7 @@ export default function App() {
       {/* <WelcomeScreen />
       <Header />
       <Footer /> */}
-      <Navigator/>
+      {/* <Navigator/> */}
     </SafeAreaView>
   );
 }

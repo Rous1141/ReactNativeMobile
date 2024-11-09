@@ -17,7 +17,7 @@ export default function Header() {
           bottom:10,
           color:"white",
         }}>
-            Navigation Bar
+            Hello User
         </Text>
     </View>
   )

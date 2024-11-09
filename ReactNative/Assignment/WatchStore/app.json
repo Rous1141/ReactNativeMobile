@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "myfirstapp",
-    "slug": "myfirstapp",
+    "slug": "watchlist1141",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0c6e0d8d-31d4-45aa-b5de-c69dfa59967d"
+      }
+    },
+    "owner": "rous1141"
   }
 }
