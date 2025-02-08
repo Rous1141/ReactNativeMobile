@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "lab_mma": ["../src/index"],
+      "lab_mma/*": ["../src/*"]
+    }
+  }
+}

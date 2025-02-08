@@ -1,13 +1,7 @@
 import 'react-native-gesture-handler';
 //MUST IMPORT THIS AT THE TOP OF App.js TO RUN. DON'T ASK WHY 
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View,SafeAreaView } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
-import Header from './components/Header';
-import Footer from './components/Footer';
-import WelcomeScreen from './components/WelcomeScreen';
-import Navigator from './components/Navigator';
+import LandingPage from './components/lab03/LandingPage';
 
 
 export default function App() {
@@ -18,8 +12,9 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       {/* <WelcomeScreen />
       <Header />
-      <Footer /> */}
-      {/* <Navigator/> */}
+      <Footer /> 
+      <Navigator/> */}
+      <LandingPage/>
     </SafeAreaView>
   );
 }

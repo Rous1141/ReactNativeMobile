@@ -1,0 +1,17 @@
+{
+  "platforms": [
+    "apple",
+    "android",
+    "web"
+  ],
+  "apple": {
+    "modules": [
+      "Lab_mmaModule"
+    ]
+  },
+  "android": {
+    "modules": [
+      "expo.modules.lab_mma.Lab_mmaModule"
+    ]
+  }
+}
