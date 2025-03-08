@@ -1,15 +1,21 @@
 import { View, Text, TouchableOpacity,StyleSheet, Pressable } from 'react-native'
+import {useRouter} from 'expo-router'
 import React from 'react'
 
 export default function CustomButton({name}) {
     if(name===''){
         name = "lunarian"
     }
+   // const nav = useRouter()
+
+
     const onPress = () => {
         alert(`Welcome, ${name}!`)
+       // nav.push('/enlist/landingPage')
     }
     const onLongPress = () =>{
         alert(`You hold the button too long, but Welcome, ${name}! anyway...`)
+      //  nav.push('/enlist/landingPage')
     }
   return (
     <View>
