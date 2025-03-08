@@ -1,38 +1,73 @@
 import React from "react";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { View, Dimensions } from "react-native";
+import { Tabs, useRouter } from "expo-router";
+import { PanGestureHandler, State } from "react-native-gesture-handler";
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import Home from "./index";  // Adjust paths based on your project structure
-import Favorite from "./favorite";  
 
-const Tab = createMaterialTopTabNavigator();
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 export default function Layout() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarStyle: { backgroundColor: "white" },
-          tabBarLabelStyle: { fontSize: 14, fontWeight: "bold" },
-          tabBarIndicatorStyle: { backgroundColor: route.name === "Favorite" ? "red" : "blue", height: 3 },
-          tabBarInactiveTintColor: "black",
-          tabBarActiveTintColor: route.name === "Favorite" ? "red" : "blue",
-          tabBarIcon: ({ focused }) => {
-            let iconName: "home" | "hearto" | undefined;
-            let color = focused ? (route.name === "Favorite" ? "red" : "blue") : "black";
+  const router = useRouter();
+  const translateX = useSharedValue(0);
 
-            if (route.name === "Home") {
-              iconName = "home";
-            } else if (route.name === "Favorite") {
-              iconName = "hearto";
-            }
-            return iconName ? <AntDesign name={iconName} size={24} color={color} /> : <React.Fragment />;
-          },
-        })}
-      >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Favorite" component={Favorite} />
-      </Tab.Navigator>
-    </NavigationContainer>
+  // Handle Swipe Gestures
+  const handleSwipe = (event: any) => {
+    const { translationX, state } = event.nativeEvent;
+
+    if (state === State.ACTIVE) {
+      translateX.value = translationX; // Move tab while swiping
+    } else if (state === State.END) {
+      // Animate back to center
+      if (Math.abs(translationX) < 10) {
+        translateX.value = withTiming(0);
+        return;
+      }
+
+      if (translationX < -10) {
+        router.push("/favorite"); // Swipe Left → Next Tab
+      } else if (translationX > 10) {
+        router.push("/"); // Swipe Right → Previous Tab
+      }
+      translateX.value = withTiming(0); // Reset position after navigation
+    }
+  };
+
+  // Animated Style for Swipe Transition
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: withTiming(translateX.value*2, { duration: 100 }) }],
+  }));
+
+  return (
+    <PanGestureHandler
+      onGestureEvent={handleSwipe}
+      onHandlerStateChange={handleSwipe}
+      activeOffsetX={[-SCREEN_WIDTH * 0.2, SCREEN_WIDTH * 0.2]}
+    >
+      <Animated.View style={[{ flex: 1 }, animatedStyle]}>
+        <Tabs screenOptions={{ tabBarInactiveTintColor: "black" }}>
+          <Tabs.Screen
+            name="index"
+            options={{
+              title: "Home",
+              tabBarActiveTintColor: "blue",
+              tabBarIcon: ({ focused }) => (
+                <AntDesign name="home" size={24} color={focused ? "blue" : "black"} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="favorite"
+            options={{
+              title: "Favorite",
+              tabBarActiveTintColor: "red",
+              tabBarIcon: ({ focused }) => (
+                <AntDesign name="hearto" size={24} color={focused ? "red" : "black"} />
+              ),
+            }}
+          />
+        </Tabs>
+      </Animated.View>
+    </PanGestureHandler>
   );
 }

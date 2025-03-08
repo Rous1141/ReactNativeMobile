@@ -2,10 +2,11 @@
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function RootLayout() {
   return(
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <SafeAreaProvider>
       
     <Stack
@@ -32,6 +33,6 @@ export default function RootLayout() {
     </Stack>
     <Toast/>
     </SafeAreaProvider>
-    
+    </GestureHandlerRootView>
   )
 }
