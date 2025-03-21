@@ -30,8 +30,6 @@ export const DrawerHomeScreen = ({
 
     const drawerContent = () => {
         return (
-     
-           
             <View  style={styles.body}>
             <Text style={styles.title}>Search By Name</Text>
             <View style={styles.searchContainer}>
@@ -54,6 +52,9 @@ export const DrawerHomeScreen = ({
       };
   return (
     <>
+    <Pressable
+      onPress={()=>{setOpenMenu(false)}}
+    >
     <View style={styles.container}>
       <Animated.View style={[styles.animatedBox,{  backgroundColor: openMenu?"rgba(0, 0, 0,0.7)":`rgba(0, 0, 0,0)`,width:openMenu?"200%":0}]}>
         <MenuDrawer
@@ -66,10 +67,12 @@ export const DrawerHomeScreen = ({
           opacity={0.4}
         />
         </Animated.View>
+    
         <View>
           {children}
         </View>
       </View>
+      </Pressable>
       </>
   )
 }
